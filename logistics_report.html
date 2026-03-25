@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EU Logistics Forecast Health-Check</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+    .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border-b border-slate-700">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <p class="text-indigo-400 text-sm font-medium uppercase tracking-widest mb-1">Amazon EU Transportation · Forecast Intelligence</p>
+          <h1 class="text-3xl font-bold text-white">EU Logistics Forecast Health-Check</h1>
+          <p class="text-slate-400 text-sm mt-2">Generated 2026-03-25 01:19 UTC+1 · 1,222 routes analysed · <span class="text-xs bg-indigo-700 text-indigo-200 px-2 py-1 rounded-full">✨ AI Enhanced</span></p>
+        </div>
+        <div class="text-right">
+          <p class="text-slate-500 text-xs">Week-on-Week Comparison</p>
+          <p class="text-indigo-300 font-mono text-lg">v_current vs v_prior</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-8 space-y-6 fade-in">
+
+    <!-- KPI Bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Routes Analysed</p>
+      <p class="text-3xl font-bold text-indigo-400">1,222</p>
+      <p class="text-xs text-slate-500 mt-1">Joined forecast × actuals</p>
+    </div>
+      <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Variance Anomalies</p>
+      <p class="text-3xl font-bold text-orange-400">0</p>
+      <p class="text-xs text-slate-500 mt-1">> 10% volume shift</p>
+    </div>
+      <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Worst Variance</p>
+      <p class="text-3xl font-bold text-orange-400">+5.3%</p>
+      <p class="text-xs text-slate-500 mt-1">Max country-level change</p>
+    </div>
+      <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Worst Actuals Bias</p>
+      <p class="text-3xl font-bold text-orange-400">+10.0%</p>
+      <p class="text-xs text-slate-500 mt-1">Max country-level gap</p>
+    </div>
+    </div>
+
+    <!-- Overall Summary -->
+    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Overall Forecast Volume Change</p>
+        <p class="text-4xl font-bold text-emerald-400">+0.8%</p>
+        <p class="text-slate-400 text-sm mt-1">17,753,439 pkgs (current) vs 17,607,217 (prior)</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Overall Forecast vs Actuals Bias</p>
+        <p class="text-4xl font-bold text-emerald-400">+4.6%</p>
+        <p class="text-slate-400 text-sm mt-1">15,343,404 pkgs forecast vs 14,668,226 actual</p>
+      </div>
+    </div>
+
+    <!-- Section 1: Version-over-Version Variance -->
+    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 mb-6">
+      <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">📈 Version-over-Version Variance</h2>
+      
+      <div class="overflow-x-auto rounded-lg border border-slate-700"><h3 class='text-slate-400 text-xs uppercase px-4 py-2'>By Country</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Country</th>
+        <th class="px-4 py-3 text-right">Current (pkgs)</th>
+        <th class="px-4 py-3 text-right">Prior (pkgs)</th>
+        <th class="px-4 py-3 text-right">Change</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Germany</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,901,931</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,756,260</td>
+          <td class="px-4 py-3 text-right font-mono">+5.3%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">UK</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,615,713</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,612,946</td>
+          <td class="px-4 py-3 text-right font-mono">+0.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Poland</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,221,897</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,224,056</td>
+          <td class="px-4 py-3 text-right font-mono">-0.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Italy</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,594,032</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,594,708</td>
+          <td class="px-4 py-3 text-right font-mono">-0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">France</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,496,247</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,497,107</td>
+          <td class="px-4 py-3 text-right font-mono">-0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Netherlands</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,276,539</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,275,880</td>
+          <td class="px-4 py-3 text-right font-mono">+0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Spain</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,647,080</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,646,260</td>
+          <td class="px-4 py-3 text-right font-mono">+0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr></tbody></table><h3 class='text-slate-400 text-xs uppercase px-4 py-2 mt-4'>By Lane Type</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Lane Type</th>
+        <th class="px-4 py-3 text-right">Current (pkgs)</th>
+        <th class="px-4 py-3 text-right">Prior (pkgs)</th>
+        <th class="px-4 py-3 text-right">Change</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Rail</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,520,118</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,371,990</td>
+          <td class="px-4 py-3 text-right font-mono">+6.2%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Air</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,525,593</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,528,640</td>
+          <td class="px-4 py-3 text-right font-mono">-0.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Sea</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,178,148</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,179,667</td>
+          <td class="px-4 py-3 text-right font-mono">-0.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Road</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">10,529,580</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">10,526,920</td>
+          <td class="px-4 py-3 text-right font-mono">+0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr></tbody></table><h3 class='text-slate-400 text-xs uppercase px-4 py-2 mt-4'>Top 10 Routes by Variance</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Route</th>
+        <th class="px-4 py-3 text-right">Current (pkgs)</th>
+        <th class="px-4 py-3 text-right">Prior (pkgs)</th>
+        <th class="px-4 py-3 text-right">Change</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Munich-Rome</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">18,572</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">12,635</td>
+          <td class="px-4 py-3 text-right font-mono">+47.0%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Stuttgart-Hamburg</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">24,682</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">16,794</td>
+          <td class="px-4 py-3 text-right font-mono">+47.0%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Berlin-Wroclaw</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">14,818</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">10,091</td>
+          <td class="px-4 py-3 text-right font-mono">+46.8%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Frankfurt-Nantes</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">19,246</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,133</td>
+          <td class="px-4 py-3 text-right font-mono">+46.5%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Stuttgart-Utrecht</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,008</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">8,879</td>
+          <td class="px-4 py-3 text-right font-mono">+46.5%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Munich-Bristol</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">14,138</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,673</td>
+          <td class="px-4 py-3 text-right font-mono">+46.2%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Berlin-Eindhoven</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">19,532</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,409</td>
+          <td class="px-4 py-3 text-right font-mono">+45.7%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Munich-Zaragoza</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,543</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,297</td>
+          <td class="px-4 py-3 text-right font-mono">+45.7%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Hamburg-Rotterdam</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,797</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,472</td>
+          <td class="px-4 py-3 text-right font-mono">+45.7%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Stuttgart-Milan</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,147</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,031</td>
+          <td class="px-4 py-3 text-right font-mono">+45.6%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr></tbody></table></div>
+    </div>
+
+    <!-- Section 2: Reality Check -->
+    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 mb-6">
+      <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">🎯 Forecast vs Actuals Reality Check</h2>
+      
+      <div class="overflow-x-auto rounded-lg border border-slate-700"><h3 class='text-slate-400 text-xs uppercase px-4 py-2'>By Country</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Country</th>
+        <th class="px-4 py-3 text-right">Forecast (pkgs)</th>
+        <th class="px-4 py-3 text-right">Actual (pkgs)</th>
+        <th class="px-4 py-3 text-right">Bias</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Germany</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,488,374</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,261,668</td>
+          <td class="px-4 py-3 text-right font-mono">+10.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Italy</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,341,905</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,235,289</td>
+          <td class="px-4 py-3 text-right font-mono">+4.8%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Spain</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,234,297</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,145,543</td>
+          <td class="px-4 py-3 text-right font-mono">+4.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">France</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,138,708</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,061,491</td>
+          <td class="px-4 py-3 text-right font-mono">+3.7%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Poland</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,955,843</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,895,061</td>
+          <td class="px-4 py-3 text-right font-mono">+3.2%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Netherlands</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,980,216</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,920,017</td>
+          <td class="px-4 py-3 text-right font-mono">+3.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">UK</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,204,061</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,149,157</td>
+          <td class="px-4 py-3 text-right font-mono">+2.6%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr></tbody></table><h3 class='text-slate-400 text-xs uppercase px-4 py-2 mt-4'>By Lane Type</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Lane Type</th>
+        <th class="px-4 py-3 text-right">Forecast (pkgs)</th>
+        <th class="px-4 py-3 text-right">Actual (pkgs)</th>
+        <th class="px-4 py-3 text-right">Bias</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Air</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,265,258</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,698,492</td>
+          <td class="px-4 py-3 text-right font-mono">+33.4%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Rail</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">2,048,424</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,939,766</td>
+          <td class="px-4 py-3 text-right font-mono">+5.6%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Sea</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,855,628</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">1,857,425</td>
+          <td class="px-4 py-3 text-right font-mono">-0.1%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 hover:bg-slate-700">
+          <td class="px-4 py-3 font-medium">Road</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,174,094</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,172,543</td>
+          <td class="px-4 py-3 text-right font-mono">+0.0%<span class="ml-2 px-2 py-0.5 rounded text-xs bg-emerald-800 text-emerald-300">OK</span></td>
+        </tr></tbody></table><h3 class='text-slate-400 text-xs uppercase px-4 py-2 mt-4'>Top 10 Routes by Bias</h3><table class="w-full text-sm text-slate-300 text-left">
+      <thead><tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-600">
+        <th class="px-4 py-3">Route</th>
+        <th class="px-4 py-3 text-right">Forecast (pkgs)</th>
+        <th class="px-4 py-3 text-right">Actual (pkgs)</th>
+        <th class="px-4 py-3 text-right">Bias</th>
+      </tr></thead><tbody>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Munich-Bristol <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">14,138</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,507</td>
+          <td class="px-4 py-3 text-right font-mono">+48.7%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Berlin-Wroclaw <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">14,818</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">10,017</td>
+          <td class="px-4 py-3 text-right font-mono">+47.9%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Frankfurt-Nantes <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">19,246</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,099</td>
+          <td class="px-4 py-3 text-right font-mono">+46.9%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Berlin-Naples <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">14,990</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">10,240</td>
+          <td class="px-4 py-3 text-right font-mono">+46.4%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Stuttgart-Nice <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">23,331</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">15,977</td>
+          <td class="px-4 py-3 text-right font-mono">+46.0%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Hamburg-Malaga <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">17,227</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">11,865</td>
+          <td class="px-4 py-3 text-right font-mono">+45.2%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Frankfurt-Liverpool <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">18,007</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">12,409</td>
+          <td class="px-4 py-3 text-right font-mono">+45.1%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Stuttgart-Eindhoven <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">22,585</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">15,566</td>
+          <td class="px-4 py-3 text-right font-mono">+45.1%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Hamburg-Rotterdam <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,797</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,512</td>
+          <td class="px-4 py-3 text-right font-mono">+45.0%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr>
+        <tr class="border-b border-slate-700/50 bg-red-950 hover:bg-red-900">
+          <td class="px-4 py-3 font-medium">Munich-Zaragoza <span class="text-slate-500 text-xs">Germany · Rail</span></td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">13,543</td>
+          <td class="px-4 py-3 text-right font-mono text-slate-300">9,349</td>
+          <td class="px-4 py-3 text-right font-mono">+44.9%<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-700 text-white">CRITICAL</span></td>
+        </tr></tbody></table></div>
+    </div>
+
+    <!-- Section 3: Recommendations -->
+    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700">
+      <h2 class="text-xl font-semibold text-white mb-4">💡 Actionable Recommendations</h2>
+      <ol class="space-y-3 text-slate-300">
+        <li class="flex gap-3"><span class="text-indigo-400 font-bold">1.</span> Investigate all CRITICAL (&gt;25% variance) country/lane combinations immediately — escalate to the relevant regional forecasting team.</li>
+        <li class="flex gap-3"><span class="text-indigo-400 font-bold">2.</span> For HIGH bias routes (&gt;10% vs actuals), review recent demand drivers (promotions, seasonality shifts, network changes).</li>
+        <li class="flex gap-3"><span class="text-indigo-400 font-bold">3.</span> If Air lanes are consistently over-forecast, consider applying a systematic lift/scale correction before next publish.</li>
+        <li class="flex gap-3"><span class="text-indigo-400 font-bold">4.</span> Validate that the v_current generation pipeline did not have data issues — large overall swings may indicate upstream data problems.</li>
+        <li class="flex gap-3"><span class="text-indigo-400 font-bold">5.</span> Schedule a forecast review call with subregional planners for any country with &gt;20% change to align on root-cause.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="border-t border-slate-800 mt-8 py-6 text-center text-slate-600 text-xs">
+    Generated by AI Forecast Health-Check System · Amazon EU Transportation Forecasting
+  </div>
+
+</body>
+</html>
