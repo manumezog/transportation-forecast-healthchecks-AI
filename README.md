@@ -1,4 +1,4 @@
-# 🚛 EU Logistics Forecast Health-Check System
+# 🚛 EU Transportation Forecasting - Automated AI Health-Checks System
 
 > **An open-source AI-powered health-check pipeline for weekly transportation demand forecasts.**
 
@@ -8,7 +8,7 @@
 
 ![EU Logistics Forecast Health-Check Dashboard](docs/report_preview.png)
 
-*The generated `logistics_report.html` — a dark-mode executive dashboard with KPI bar, anomaly tables with severity badges (🔴 CRITICAL / 🟠 HIGH), and actionable recommendations. Works fully offline without any API key.*
+_The generated `logistics_report.html` — a dark-mode executive dashboard with KPI bar, anomaly tables with severity badges (🔴 CRITICAL / 🟠 HIGH), and actionable recommendations. Works fully offline without any API key._
 
 ---
 
@@ -19,6 +19,7 @@ This project is a **personal open-source prototype** built in my spare time, dir
 I'm a **Forecasting Manager at Amazon EU Transportation**, where my team produces high-quality weekly demand forecasts for transportation and labor capacity planning across the European Union — covering thousands of routes, lanes, and logistics hubs.
 
 Every week, when a new forecast version is published, the team must manually review it to:
+
 - Detect unexpected version-over-version swings before releasing to planning systems
 - Validate that the new forecast is grounded in recent demand reality (not drifted too far from actuals)
 - Flag anomalies at any granularity — country, lane type, route, network section
@@ -60,23 +61,27 @@ recent_actuals.csv        ─┘                               ─→ reality_da
 
 Unlike typical AI demo pipelines, this system **always produces a complete report** — even without a single API call:
 
-| Mode | How it works | Output quality |
-|---|---|---|
-| **Data-only** (no API key / quota exhausted) | Pandas pre-computes all analytics; HTML built from DataFrames | ✅ Full professional dashboard |
-| **AI-enhanced** (API key with quota available) | Same + 2 Gemini API calls add narrative paragraphs | ✅ Full dashboard + executive commentary |
+| Mode                                           | How it works                                                  | Output quality                           |
+| ---------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
+| **Data-only** (no API key / quota exhausted)   | Pandas pre-computes all analytics; HTML built from DataFrames | ✅ Full professional dashboard           |
+| **AI-enhanced** (API key with quota available) | Same + 2 Gemini API calls add narrative paragraphs            | ✅ Full dashboard + executive commentary |
 
 ---
 
 ## 🤖 What Each Agent Does
 
 ### 1. VarianceAnalyst
+
 Receives pre-computed version-over-version statistics (by country, lane type, top routes). Writes an executive narrative flagging anomalies above 10% as **HIGH** or above 25% as **CRITICAL**, with business interpretations.
 
 ### 2. RealityChecker
+
 Receives pre-computed forecast vs actuals bias statistics. Identifies systemic over/under-forecast patterns, flags route-level outliers, and provides a risk assessment.
 
 ### 3. HTML Report Builder
+
 Always runs locally — no API required. Converts all pandas DataFrames and optional AI narratives into a self-contained dark-mode dashboard:
+
 - **KPI bar**: Routes analysed, anomaly count, worst variance %, worst bias %
 - **Variance section**: Country / lane / route tables with severity badges
 - **Reality Check section**: Country / lane / route bias tables
@@ -107,25 +112,31 @@ transport_forecast_healthchecks/
 ## 🚀 Quick Start
 
 ### 1. Install dependencies
+
 ```bash
 pip install pandas sqlalchemy google-genai python-dotenv
 ```
 
 ### 2. (Optional) Set up your Gemini API key
+
 Create a `.env` file:
+
 ```
 GOOGLE_API_KEY=your_key_here
 ```
+
 Get a free key at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey).
 
 > **Note:** The API key is optional. The full dashboard is always generated from pandas analytics regardless of API availability. The key only enables AI narrative paragraphs.
 
 ### 3. Run
+
 ```bash
 python master.py
 ```
 
 The script will:
+
 1. Auto-generate 19,000+ rows of dummy logistics data (if not already present)
 2. Pre-compute all variance and bias analytics with pandas
 3. Optionally call Gemini to add AI narrative (skips gracefully if quota is exhausted)
@@ -136,44 +147,50 @@ The script will:
 ## 📊 Data Schema
 
 ### `weekly_forecast_data.csv`
-| Column | Description |
-|---|---|
-| `version` | `v_current` or `v_prior` |
-| `route` | Origin–Destination city pair (e.g. `Berlin→Paris`) |
-| `date` | Forecasted delivery date |
-| `qty` | Forecasted package volume |
-| `volume` | Forecasted cubic volume (m³) |
-| `country` | Origin country |
-| `lane_type` | `Road`, `Rail`, `Air`, or `Sea` |
+
+| Column      | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `version`   | `v_current` or `v_prior`                           |
+| `route`     | Origin–Destination city pair (e.g. `Berlin→Paris`) |
+| `date`      | Forecasted delivery date                           |
+| `qty`       | Forecasted package volume                          |
+| `volume`    | Forecasted cubic volume (m³)                       |
+| `country`   | Origin country                                     |
+| `lane_type` | `Road`, `Rail`, `Air`, or `Sea`                    |
 
 ### `recent_actuals.csv`
-| Column | Description |
-|---|---|
-| `route` | Same route identifier as forecast |
-| `date` | Actual date |
-| `actual_qty` | Actual package volume delivered |
-| `actual_volume` | Actual cubic volume |
+
+| Column          | Description                       |
+| --------------- | --------------------------------- |
+| `route`         | Same route identifier as forecast |
+| `date`          | Actual date                       |
+| `actual_qty`    | Actual package volume delivered   |
+| `actual_volume` | Actual cubic volume               |
 
 ---
 
 ## 🔍 Health-Check Logic
 
 ### Variance Check (v_current vs v_prior)
+
 ```
 change_pct = (v_current_qty - v_prior_qty) / v_prior_qty × 100
 
 CRITICAL  → |change_pct| > 25%
 HIGH      → |change_pct| > 10%
 ```
+
 Evaluated at: overall, country, lane type, top-10 routes.
 
 ### Reality Check (forecast vs actuals)
+
 ```
 bias_pct = (forecast_qty - actual_qty) / actual_qty × 100
 
 CRITICAL  → |bias_pct| > 25%
 HIGH      → |bias_pct| > 10%
 ```
+
 Evaluated at: overall, country, lane type, top-10 routes by absolute bias.
 
 ---
@@ -185,17 +202,19 @@ Evaluated at: overall, country, lane type, top-10 routes by absolute bias.
 **Purpose**: Synthetic data factory. Generates realistic EU logistics forecast and actuals CSVs that mimic real Amazon transportation data exports — without exposing any real operational data.
 
 **How it works**:
+
 1. Defines a network of **7 countries × 5-6 major cities** as route endpoints
 2. Randomly generates **~1,500 unique origin-destination routes** with realistic modal splits (Road 60%, Rail/Air/Sea 40%)
 3. For each route × 7 dates, creates two forecast versions (`v_prior`, `v_current`) plus actuals
 4. Deliberately **injects two anomalies** to give the health-check system real signals to detect:
 
-| Anomaly | Affected dimension | Signal type | Magnitude |
-|---|---|---|---|
-| Germany Rail demand spike | `country=Germany, lane_type=Rail` | Variance (v_current vs v_prior) | +40–50% |
-| Air lane over-forecast | `lane_type=Air` | Reality gap (forecast vs actuals) | +20–30% bias |
+| Anomaly                   | Affected dimension                | Signal type                       | Magnitude    |
+| ------------------------- | --------------------------------- | --------------------------------- | ------------ |
+| Germany Rail demand spike | `country=Germany, lane_type=Rail` | Variance (v_current vs v_prior)   | +40–50%      |
+| Air lane over-forecast    | `lane_type=Air`                   | Reality gap (forecast vs actuals) | +20–30% bias |
 
 **Key function**:
+
 ```python
 generate_massive_logistics_data()
 # → weekly_forecast_data.csv   (~19,000 rows)
@@ -210,13 +229,13 @@ generate_massive_logistics_data()
 
 **Execution stages**:
 
-| Stage | Function | API calls |
-|---|---|---|
-| Load data | `pd.read_csv()` | 0 |
-| Variance analytics | `dim_variance(col)` | 0 |
-| Reality-check analytics | `dim_bias(col)` | 0 |
-| AI narrative (optional) | `call_agent(name, ...)` | 0–2 |
-| HTML dashboard | `variance_table_html()`, `bias_table_html()`, etc. | 0 |
+| Stage                   | Function                                           | API calls |
+| ----------------------- | -------------------------------------------------- | --------- |
+| Load data               | `pd.read_csv()`                                    | 0         |
+| Variance analytics      | `dim_variance(col)`                                | 0         |
+| Reality-check analytics | `dim_bias(col)`                                    | 0         |
+| AI narrative (optional) | `call_agent(name, ...)`                            | 0–2       |
+| HTML dashboard          | `variance_table_html()`, `bias_table_html()`, etc. | 0         |
 
 **Key functions**:
 
@@ -270,4 +289,4 @@ MIT — feel free to adapt, fork, and build on this.
 
 ---
 
-*Built with ❤️ as a side project by an Amazon EU Transportation Forecasting Manager.*
+_Built with ❤️ as a side project by an Amazon EU Transportation Forecasting Manager._
