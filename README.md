@@ -278,8 +278,7 @@ OK        |Δ| ≤ 10%   →  Within acceptable bounds (green badge)
 - [ ] Connect to real forecast database (BigQuery / Redshift)
 - [ ] Add time-series accuracy tracking across multiple weeks
 - [ ] Email/Slack delivery of the HTML report on forecast publish
-- [ ] Deploy to Cloud Run for automated weekly execution
-- [ ] Vertex AI Agent Engine deployment for enterprise scale
+- [ ] Deploy to Cloud and automate weekly execution
 
 ---
 
